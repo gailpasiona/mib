@@ -1,0 +1,56 @@
+<?php
+
+namespace Financials\Controllers;
+
+use Financials\Repos\CVRepositoryInterface;
+
+class CVController extends \BaseController{
+	
+	public function __construct(CVRepositoryInterface $cv) {
+		$this->beforeFilter('auth');
+		// $this->beforeFilter('action_permission', array('except' => array('index')));
+		$this->beforeFilter('session');
+
+		$this->cv = $cv;
+	}
+
+	public function index(){
+		
+	}
+
+	public function create(){
+		$repo = \App::make('Financials\Rfp');
+		$data = $repo->getApprovedRecord(\Input::get('rfp'));
+
+		// $register_info = array();
+
+		// $register_info['cost_dept'] = $data[0]['reference']['requestor'];
+		// $register_info['invoice_ref'] = $data[0]['register_id'];
+		// $register_info['amount_request'] = $data[0]['account_value'];
+		// $register_info['payee_name'] = $data[0]['reference']['supplier']['supplier_name'];
+		// $register_info['payee_address'] = $data[0]['reference']['supplier']['address'];
+		// $register_info['title'] = "Create Cheque Voucher for RFP " . $data[0]['register_id'];
+
+		// return \View::make('financials.modals.form_cv')->with('data',$register_info);
+
+		return \Response::json($data);
+	}
+
+	public function store(){
+		$rfp = $this->cv->create(\Input::all());
+
+		if($rfp->id) return 'Saved';
+	}
+
+	public function show(){
+
+	}
+
+	public function edit(){
+
+	}
+
+	public function update(){
+
+	}
+}

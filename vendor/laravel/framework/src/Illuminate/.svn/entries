@@ -1,0 +1,112 @@
+10
+
+dir
+5
+svn://185.12.116.139/financials/vendor/laravel/framework/src/Illuminate
+svn://185.12.116.139/financials
+
+
+
+2014-11-06T10:24:01.539975Z
+5
+gail
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+f84ca260-d128-431b-a3cf-5a7314890e7e
+
+Remote
+dir
+
+Translation
+dir
+
+Exception
+dir
+
+Auth
+dir
+
+Console
+dir
+
+Cache
+dir
+
+Events
+dir
+
+Database
+dir
+
+Html
+dir
+
+Config
+dir
+
+Foundation
+dir
+
+Redis
+dir
+
+Cookie
+dir
+
+View
+dir
+
+Support
+dir
+
+Http
+dir
+
+Hashing
+dir
+
+Log
+dir
+
+Mail
+dir
+
+Workbench
+dir
+
+Container
+dir
+
+Session
+dir
+
+Queue
+dir
+
+Filesystem
+dir
+
+Routing
+dir
+
+Pagination
+dir
+
+Encryption
+dir
+
+Validation
+dir
+

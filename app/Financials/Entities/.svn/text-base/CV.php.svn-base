@@ -1,0 +1,31 @@
+<?php namespace Financials\Entities;
+
+class CV extends FinancialModel {
+	protected $table = 'cheque_voucher';
+
+	public static function boot()
+    {
+        parent::boot();
+ 
+        static::creating(function($record)
+        {
+            $record->created_by =\Auth::user()->id;
+            $record->last_updated_by = \Auth::user()->id;
+        });
+ 
+        static::updating(function($record)
+        {
+            $record->last_updated_by = \Auth::user()->id;
+        });
+    }
+
+    public function context(){
+		return $this->belongsTo('\Company', 'company_id');
+	}
+
+    public function rfp(){
+        $showable_fields = array('id','po_id');
+        return $this->belongsTo('Financials\Entities\Rfp', 'rfp_id')->select();
+    }
+
+}

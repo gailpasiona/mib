@@ -1,0 +1,89 @@
+10
+
+dir
+5
+svn://185.12.116.139/financials/vendor/symfony/console/Symfony/Component/Console/Tests
+svn://185.12.116.139/financials
+
+
+
+2014-11-06T10:24:01.539975Z
+5
+gail
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+f84ca260-d128-431b-a3cf-5a7314890e7e
+
+Command
+dir
+
+Descriptor
+dir
+
+Input
+dir
+
+Logger
+dir
+
+Helper
+dir
+
+Output
+dir
+
+Formatter
+dir
+
+Tester
+dir
+
+Fixtures
+dir
+
+ApplicationTest.php
+file
+
+
+
+
+2014-10-05T13:57:04.000000Z
+f80e5b21abd5933f1e9bd5bbfd2aacd2
+2014-11-06T10:24:01.539975Z
+5
+gail
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+45480
+

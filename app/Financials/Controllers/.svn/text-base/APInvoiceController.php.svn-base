@@ -1,0 +1,101 @@
+<?php
+
+namespace Financials\Controllers;
+
+use Financials\Repos\RegisterRepositoryInterface;
+use Financials\Repos\PurchasesRepositoryInterface;
+
+//for checking, need to check dependency injections
+class APInvoiceController extends \BaseController{
+	
+	public function __construct(RegisterRepositoryInterface $register, PurchasesRepositoryInterface $purchases) {
+		$this->beforeFilter('auth');
+		// $this->beforeFilter('action_permission', array('except' => array('index')));
+		$this->beforeFilter('session');
+
+		$this->register = $register;
+		$this->purchases = $purchases;
+	}
+
+	public function index(){
+		// echo "AP Index";
+		//return \Response::json($this->rfp->selectAll());
+		return \View::make('financials.apinvoice')->with('user', \Confide::user()->username);
+	}
+
+	public function create(){
+		// return "hello";
+	}
+
+	public function store(){
+		return "helldo";
+	}
+
+	public function show($ref){
+		return \Response::json($this->register->getRecord($ref));
+	}
+
+	public function edit($record){
+		$repo = \App::make('Financials\Register');//need to verify if binding is necessary
+		$data = $repo->getOpenRecord($record);
+
+		$register_info = array();
+
+		$register_info['cost_dept'] = $data[0]['reference']['requestor'];
+		$register_info['invoice_no'] = $data[0]['register_id'];
+		$register_info['amount_request'] = $data[0]['account_value'];
+		$register_info['payee_name'] = $data[0]['reference']['supplier']['supplier_name'];
+		//$register_info['payee_address'] = $data[0]['reference']['supplier']['address'];
+		$register_info['title'] = "Modify Invoice " . $data[0]['register_id'];
+
+		return \View::make('financials.modals.form_invoice')->with('data',$register_info);
+	}
+
+	public function update($record){
+		if($this->register->modify($record,\Input::all())) return 'Invoice Updated!';
+		else return 'Update Failed!'; 
+		// return \Response::json($record);
+	}
+
+	public function generate(){
+		// return \Response::json(array($this->purchases->find(\Input::get('reference'))->po_number,
+		// 	$this->purchases->find(\Input::get('reference'))->po_total_amount));
+		$payable = $this->purchases->find(\Input::get('reference'));
+
+		$invoice = $this->register->create(array('ref'=>$payable->po_number,
+			'amount'=>$payable->po_total_amount, 'ref_id' =>$payable->id));
+
+		if($invoice->id){
+				$sdd = $this->purchases->updateById(\Input::get('reference'));
+				return 'Invoice generated!';
+		}
+		else
+			return 'Invoice Failed';
+	}
+
+	public function post(){
+		if($this->register->post(\Input::get('invoice'))) return 'Invoice posted!';
+		else return 'Posting Failed!'; 
+	}
+
+	public function list_aging(){
+		$type = \Input::get('type');
+		$data = null;
+		switch ($type) {
+			case 'open':
+				$data = $this->register->getOpen();
+				break;
+			case 'all':
+				$data = $this->register->getAll();
+				break;
+			default:
+				$data = $this->register->getAging();
+				break;
+		}
+		return \Response::json($data);
+	}
+
+	public function getRegisterInfo($ref){
+		return \Response::json($this->register->getRecord($ref));
+	}
+}

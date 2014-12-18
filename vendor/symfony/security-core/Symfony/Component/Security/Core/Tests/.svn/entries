@@ -1,0 +1,83 @@
+10
+
+dir
+5
+svn://185.12.116.139/financials/vendor/symfony/security-core/Symfony/Component/Security/Core/Tests
+svn://185.12.116.139/financials
+
+
+
+2014-11-06T10:24:01.539975Z
+5
+gail
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+f84ca260-d128-431b-a3cf-5a7314890e7e
+
+Util
+dir
+
+User
+dir
+
+Encoder
+dir
+
+Authentication
+dir
+
+Authorization
+dir
+
+Role
+dir
+
+SecurityContextTest.php
+file
+
+
+
+
+2014-09-28T15:22:14.000000Z
+c6a315c41a473173516a7b97d7bd135f
+2014-11-06T10:24:01.539975Z
+5
+gail
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3950
+
+Validator
+dir
+
